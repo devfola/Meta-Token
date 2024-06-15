@@ -5,14 +5,16 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
+const {ethers} = require("ethers");
 
 async function main() {
-  const initBalance = 1;
-  const Assessment = await hre.ethers.getContractFactory("Assessment");
-  const assessment = await Assessment.deploy(initBalance);
-  await assessment.deployed();
 
-  console.log(`A contract with balance of ${initBalance} eth deployed to ${assessment.address}`);
+  const MetaToken = await hre.ethers.getContractFactory("MetaToken");
+  const metaToken = await MetaToken.deploy();
+  await metaToken.deployed();
+
+  console.log(`MetaToken contract deployed to ${metaToken.address}`);
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
